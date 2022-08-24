@@ -40,10 +40,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = _("User")
         verbose_name_plural = _("Users")
         ordering = ["-date_joined"]
-    
+
     def __str__(self):
         return self.username
-    
+
     @property
     def full_name(self):
         """
@@ -61,4 +61,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         ------------------------------
         """
         return self.username
-

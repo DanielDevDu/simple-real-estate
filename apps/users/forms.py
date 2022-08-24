@@ -22,6 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ["email", "first_name", "last_name", "username"]
         error_class = "error"
 
+
 class CustomUserChangeForm(UserChangeForm):
     """
     ------------------------------
