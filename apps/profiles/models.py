@@ -53,12 +53,12 @@ class Profile(TimeStampedUUIDModel):
         max_length=20,
     )
     country = CountryField(
-        verbose_name=_("Country"), default="KE", blank=False, null=False
+        verbose_name=_("Country"), default="CO", blank=False, null=False
     )
     city = models.CharField(
         verbose_name=_("City"),
         max_length=180,
-        default="Medellín",
+        default="Medellin",
         blank=False,
         null=False,
     )

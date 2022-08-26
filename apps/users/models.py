@@ -12,7 +12,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 # My models
 from .managers import CustomUserManager
-
+ 
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
