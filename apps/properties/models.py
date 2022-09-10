@@ -65,7 +65,9 @@ class Property(TimeStampedUUIDModel):
         OTHER = "Other", _("Other")
 
     user = models.ForeignKey(
-        User, verbose_name=_("Agent, Seller or buyer"),
+        User,
+        verbose_name=_("Agent, Seller or buyer"),
+        related_name="agent_buyer",
         on_delete=models.DO_NOTHING
     )
     title = models.CharField(
@@ -158,7 +160,7 @@ class Property(TimeStampedUUIDModel):
         ----------------
         """
         self.title = str.title(self.title)
-        self.description = str.description(self.description)
+        self.description = str.capitalize(self.description)
         self.ref_code = "".join(
             random.choices(string.ascii_uppercase + string.digits, k=10)
         )
