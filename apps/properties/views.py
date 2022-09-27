@@ -1,9 +1,10 @@
+import logging
 from asyncio.log import logger
 from cgitb import lookup
-import logging
+
 import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, permissions, status, filters
+from rest_framework import filters, generics, permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,10 +13,10 @@ from .exceptions import PropertyNotFound
 from .models import Property, PropertyViews
 from .paginations import PropertyPagination
 from .serializers import (
-    PropertySerializer, PropertyCreateSerializer,
-    PropertyViewsSerializer
+    PropertyCreateSerializer,
+    PropertySerializer,
+    PropertyViewsSerializer,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -26,27 +27,28 @@ class PropertyFilter(django_filters.FilterSet):
     Property Filter
     ----------------
     """
+
     advert_type = django_filters.ChoiceFilter(
-        field_name='advert_type',
-        lookup_expr='iexact',
+        field_name="advert_type",
+        lookup_expr="iexact",
     )
     property_type = django_filters.CharFilter(
-        field_name='property_type',
-        lookup_expr='iexact',
+        field_name="property_type",
+        lookup_expr="iexact",
     )
     price = django_filters.NumberFilter()
     price__gt = django_filters.NumberFilter(
-        field_name='price',
-        lookup_expr='gt',
+        field_name="price",
+        lookup_expr="gt",
     )
     price__lt = django_filters.NumberFilter(
-        field_name='price',
-        lookup_expr='gt',
+        field_name="price",
+        lookup_expr="gt",
     )
 
     class Meta:
         model = Property
-        fields = ['property_type', 'advert_type', 'price']
+        fields = ["property_type", "advert_type", "price"]
 
 
 class ListAllPropertiesAPIView(generics.ListAPIView):
@@ -55,7 +57,8 @@ class ListAllPropertiesAPIView(generics.ListAPIView):
     List All Properties
     ----------------
     """
-    queryset = Property.objects.all().order_by('-created_at')
+
+    queryset = Property.objects.all().order_by("-created_at")
     serializer_class = PropertySerializer
     pagination_class = PropertyPagination
     filter_backends = [
@@ -64,8 +67,8 @@ class ListAllPropertiesAPIView(generics.ListAPIView):
         filters.OrderingFilter,
     ]
     filterset_class = PropertyFilter
-    search_fields = ['country', 'city']
-    ordering_fields = ['created_at']
+    search_fields = ["country", "city"]
+    ordering_fields = ["created_at"]
 
 
 class ListAgentsPropertiesAPIView(generics.ListAPIView):
@@ -74,6 +77,7 @@ class ListAgentsPropertiesAPIView(generics.ListAPIView):
     List Agents Properties
     ----------------
     """
+
     serializer_class = PropertySerializer
     pagination_class = PropertyPagination
     filter_backends = [
@@ -82,8 +86,8 @@ class ListAgentsPropertiesAPIView(generics.ListAPIView):
         filters.OrderingFilter,
     ]
     filterset_class = PropertyFilter
-    search_fields = ['country', 'city']
-    ordering_fields = ['created_at']
+    search_fields = ["country", "city"]
+    ordering_fields = ["created_at"]
 
     def get_queryset(self):
         """
@@ -92,7 +96,7 @@ class ListAgentsPropertiesAPIView(generics.ListAPIView):
         ----------------
         """
         user = self.request.user
-        queryset = Property.objects.filter(user=user).order_by('-created_at')
+        queryset = Property.objects.filter(user=user).order_by("-created_at")
         return queryset
 
 
@@ -102,6 +106,7 @@ class PropertyViewsAPIView(generics.ListAPIView):
     Property Views
     ----------------
     """
+
     serializer_class = PropertyViewsSerializer
     queryset = PropertyViews.objects.all()
 

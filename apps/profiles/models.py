@@ -5,14 +5,17 @@ Define Profile class
 ------------------------------
 """
 import uuid
+
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
+
 # My models
 from apps.common.models import TimeStampedUUIDModel
+
 User = get_user_model()
 
 
@@ -22,6 +25,7 @@ class Gender(models.TextChoices):
     Gender Options
     --------------
     """
+
     MALE = "Male", _("Male")
     FEMALE = "Female", _("Female")
     OTHER = "Other", _("Other")
@@ -33,6 +37,7 @@ class Profile(TimeStampedUUIDModel):
     Profile Class with many fields
     -------------------------------
     """
+
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     phone_number = PhoneNumberField(
         verbose_name=_("Phone Number"), max_length=30, default="+41524204242"

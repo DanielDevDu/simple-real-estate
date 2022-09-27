@@ -5,14 +5,15 @@ Define CustomUserModel class
 ------------------------------
 """
 import uuid
+
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 # My models
 from .managers import CustomUserManager
- 
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
@@ -29,7 +30,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name=_("Email"), max_length=255, unique=True)
     is_active = models.BooleanField(verbose_name=_("Is Active"), default=True)
     is_staff = models.BooleanField(verbose_name=_("Is Staff"), default=False)
-    date_joined = models.DateTimeField(verbose_name=_("Date Joined"), default=timezone.now)
+    date_joined = models.DateTimeField(
+        verbose_name=_("Date Joined"), default=timezone.now
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "first_name", "last_name"]

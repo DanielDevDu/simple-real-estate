@@ -4,7 +4,13 @@ Urls to profiles app.
 ---------------------
 """
 from django.urls import path
-from .views import (AgentListAPIView, TopAgentListAPIView, GetProfileAPIView, UpdateProfileView)
+
+from .views import (
+    AgentListAPIView,
+    GetProfileAPIView,
+    TopAgentListAPIView,
+    UpdateProfileView,
+)
 
 urlpatterns = [
     path("me/", GetProfileAPIView.as_view(), name="get_profile"),

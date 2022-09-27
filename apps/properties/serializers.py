@@ -17,6 +17,7 @@ class PropertySerializer(serializers.ModelSerializer):
     Property Serializer
     ----------------
     """
+
     country = CountryField()
     user = serializers.SerializerMethodField()
 
@@ -40,6 +41,7 @@ class PropertyCreateSerializer(serializers.ModelSerializer):
     Property Serializer
     ----------------
     """
+
     country = CountryField(name_only=True)
 
     class Meta:
@@ -53,6 +55,7 @@ class PropertyViewsSerializer(serializers.ModelSerializer):
     Property Views Serializer
     ----------------
     """
+
     class Meta:
         model = PropertyViews
         exclude = ["pkid", "updated_at"]

@@ -16,6 +16,7 @@ class EnquirySerializer(serializers.ModelSerializer):
     Enquiry Serializer
     ----------------
     """
+
     class Meta:
         model = Enquiry
         fileds = "__all__"

@@ -32,7 +32,13 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("You must provide a valid email address"))
 
     def create_user(
-        self, username: str, first_name: str, last_name: str, email: str, password: str, **extra_fields
+        self,
+        username: str,
+        first_name: str,
+        last_name: str,
+        email: str,
+        password: str,
+        **extra_fields
     ) -> object:
         """
         --------------------------------------------------------------
@@ -73,7 +79,13 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(
-        self, username: str, first_name: str, last_name: str, email: str, password: str, **extra_fields
+        self,
+        username: str,
+        first_name: str,
+        last_name: str,
+        email: str,
+        password: str,
+        **extra_fields
     ) -> object:
         """
         --------------------------------------------------------------
@@ -102,11 +114,7 @@ class CustomUserManager(BaseUserManager):
 
         # create superUser
         superuser = self.create_user(
-            username,
-            first_name,
-            last_name,
-            email, password,
-            **extra_fields
+            username, first_name, last_name, email, password, **extra_fields
         )
         superuser.save(using=self._db)
         return superuser

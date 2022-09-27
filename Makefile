@@ -51,7 +51,8 @@ flake8:
 	docker compose exec api flake8 #
 
 black-check:
-	docker compose exec api black --check --exclude=migrations . #
+	docker compose exec api pip install --upgrade black==22.3.0
+	docker compose exec api black --check --exclude=migrations .
 
 black-diff:
 	docker compose exec api black --diff --exclude=migrations . #
