@@ -38,11 +38,14 @@ down-v:
 volume:
 	docker volume inspect simple-real-estate_postgres_data
 
+backend:
+	docker compose exec -it api bash
+
 estate-db:
 	docker compose exec postgres-db psql --username=admin --dbname=estate
 
 test:
-	docker compose exec api pytest -p no:warnings --cov=. #
+	docker compose exec api pytest -p no:warnings --cov=.
 
 test-html:
 	docker compose exec api pytest -p no:warnings --cov=. --cov-report=html #

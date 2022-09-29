@@ -17,9 +17,9 @@ from .managers import CustomUserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    ----------------------------------
-    Custom User Model with email field
-    ----------------------------------
+    -----------------------------------
+    Custom User Model with email field 
+    -----------------------------------
     """
 
     pkid = models.BigAutoField(primary_key=True, editable=False)
