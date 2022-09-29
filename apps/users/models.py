@@ -17,9 +17,9 @@ from .managers import CustomUserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    -----------------------------------
-    Custom User Model with email field 
-    -----------------------------------
+    ----------------------------------
+    Custom User Model with email field
+    ----------------------------------
     """
 
     pkid = models.BigAutoField(primary_key=True, editable=False)
@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         Return the user's full name
         ------------------------------
         """
-        return f"{self.first_name.title()} {self.last_name.title()}"
+        return f"{self.first_name} {self.last_name}"
 
     @property
     def get_short_name(self):
