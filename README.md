@@ -17,7 +17,7 @@ This project is a simple example of a estate page where there are three kind of 
 * [Version](#id-section1)
 * [Requeriments](#id-section2)
 * [Usage](#id-section4)
-* [Bugs](#id-section7)
+* [Technologies](#id-section7)
 * [Authors](#id-section8)
 * [License](#id-section9)
 
@@ -51,10 +51,16 @@ Then just open your browser and use localhost:8000 to access the backend view
 
 <div id='id-section7'/>
 
-## Bugs 🐛
+## Technologies 🐛
 
-This software is still in development.
-
+* Python (version 3.10) 🐍
+ - Django and Django-Rest-Framework
+* Docker and Docker-compose 🐋
+* Redis
+* Celery
+* Makefile
+* Postgres
+* Ngnix
 <div id='id-section8'/>
 
 ## Authors ✍️
