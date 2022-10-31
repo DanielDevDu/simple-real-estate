@@ -54,7 +54,7 @@ Then just open your browser and use localhost:8000 to access the backend view
 ## Technologies 🐛
 
 * Python (version 3.10) 🐍
- - Django and Django-Rest-Framework
+   - Django and Django-Rest-Framework
 * Docker and Docker-compose 🐋
 * Redis
 * Celery
