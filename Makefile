@@ -14,10 +14,10 @@ up:
 down:
 	docker compose down
 
-show-logs:
+logs:
 	docker compose logs
 
-show-continues-logs:
+c-logs:
 	docker compose logs -f
 
 migrate:
