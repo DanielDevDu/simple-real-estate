@@ -10,7 +10,7 @@ const Property = ({ property }) => {
   }
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '16rem' }}>
       <Badge
         bg='success'
         className='position-absolute top-0 start-100 translate-middle rounded-pill'
