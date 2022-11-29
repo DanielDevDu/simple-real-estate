@@ -41,8 +41,11 @@ volume:
 backend:
 	docker compose exec -it api bash
 
-estate-db:
-	docker compose exec postgres-db psql --username=admin --dbname=estate
+db:
+	docker compose exec postgres-database psql --username=admin --dbname=estate
+
+db-bash:
+	sudo docker compose exec postgres-database bash
 
 test:
 	docker compose exec api pytest -p no:warnings --cov=.
