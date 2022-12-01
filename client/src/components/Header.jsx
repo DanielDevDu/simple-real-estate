@@ -2,8 +2,23 @@ import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { GiHouse } from 'react-icons/gi';
 import { LinkContainer } from 'react-router-bootstrap';
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { reset, logout } from '../features/auth/authSlice';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/');
+  };
+
   return (
     <header>
       <Navbar fixed='top' bg='dark' variant='dark' expand='lg' collapseOnSelect>
@@ -25,14 +40,30 @@ const Header = () => {
               <LinkContainer to='/properties'>
                 <Nav.Link>Properties</Nav.Link>
               </LinkContainer>
-              <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-                <NavDropdown.Item href='#action1'>Action</NavDropdown.Item>
-                <NavDropdown.Item href='#action2'>
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href='#action3'>Something</NavDropdown.Item>
-              </NavDropdown>
+
+              {user ? (
+                <NavDropdown
+                  title={user.firstName ? user.firstName : 'Welcome'}
+                  id='username'
+                >
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    <FaSignOutAlt /> Logout
+                  </NavDropdown.Item>
+
+                  {/* <NavDropdown.Divider /> */}
+                  {/* <NavDropdown.Item href='#action3'>Something</NavDropdown.Item> */}
+                </NavDropdown>
+              ) : (
+                <LinkContainer to='/login'>
+                  <Nav.Link>
+                    <FaSignInAlt /> Login
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

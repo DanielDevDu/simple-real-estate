@@ -1,0 +1,53 @@
+import axios from 'axios';
+
+const REGISTER_URL = '/api/v1/users/';
+const LOGIN_URL = '/api/v1/auth/jwt/create/';
+const ACTIVATE_URL = '/api/v1/auth/users/activation/';
+
+// Register a new user
+const register = async (userData) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const response = await axios.post(REGISTER_URL, userData, config);
+  return response.data;
+};
+
+// Login a user
+const login = async (userData) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const response = await axios.post(LOGIN_URL, userData, config);
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+  }
+  return response.data;
+};
+
+// Logout a user
+const logout = () => {
+  localStorage.removeItem('user');
+};
+
+// Activate a user
+const activate = async (userData) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const response = await axios.post(ACTIVATE_URL, userData, config);
+  return response.data;
+};
+
+const authServices = { register, login, logout, activate };
+
+export default authServices;
