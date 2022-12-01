@@ -8,7 +8,7 @@ EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "info@realestate.com"
+DEFAULT_FROM_EMAIL = "danieldevdu@gmail.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "Real Estate"
 
